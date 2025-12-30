@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Article
-struct Article: Codable {
+struct NewsModel: Codable {
     let data: [Datum]
 }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct NewsHeadlinesView: View {
     @State private var vm = NewsViewModel()
@@ -18,9 +19,13 @@ struct NewsHeadlinesView: View {
                     ProgressView("Loading...")
                 } else {
                     List {
-                        ForEach(vm.article.data) { article in
+                        ForEach(vm.newsModel.data) { newsModel in
                             // TODO: Article Row View
-                            Text(article.title)
+                            NavigationLink {
+                                WebView(URL(string: newsModel.url)!)
+                            } label: {
+                                ArticleRowView(datum: newsModel)
+                            }
                         }
                     }
                 }

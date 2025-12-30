@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 @Observable
 class NewsViewModel {
-    var article: Article = Article(data: [])
+    var newsModel: NewsModel = NewsModel(data: [])
     var isLoading = false
     var errorMessage: String?
     
@@ -40,9 +40,9 @@ class NewsViewModel {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             
-            let decode = try JSONDecoder().decode(Article.self, from: data)
+            let decode = try JSONDecoder().decode(NewsModel.self, from: data)
             
-            article = decode
+            newsModel = decode
         } catch {
             errorMessage = "Failed to load news: \(error.localizedDescription)"
         }
