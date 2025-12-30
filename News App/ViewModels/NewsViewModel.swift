@@ -25,6 +25,12 @@ class NewsViewModel {
         return key
     }
     
+    init() {
+        Task {
+            await fetchHeadlines()
+        }
+    }
+    
     func fetchHeadlines() async {
         isLoading = true
         errorMessage = nil

@@ -18,7 +18,6 @@ struct NewsHeadlinesView: View {
                 // MARK: List of Articles
                 List {
                     ForEach(vm.newsModel.data) { newsModel in
-                        // TODO: Article Row View
                         NavigationLink {
                             WebView(URL(string: newsModel.url)!)
                         } label: {
@@ -43,9 +42,6 @@ struct NewsHeadlinesView: View {
                 Text(vm.errorMessage ?? "")
             }
             .navigationTitle("Top Headlines")
-            .task {
-                await vm.fetchHeadlines()
-            }
             .refreshable {
                 await vm.fetchHeadlines()
             }
